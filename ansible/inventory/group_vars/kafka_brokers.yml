@@ -1,0 +1,3 @@
+---
+# Target the first host in the dynamically populated 'bastion' group as our SSH proxy jump point
+ansible_ssh_common_args: '-o ProxyCommand="ssh -i /var/lib/jenkins/.ssh/id_rsa -o StrictHostKeyChecking=no -W %h:%p -q ubuntu@{{ hostvars[groups[\'bastion\'][0]][\'ansible_host\'] }}"'

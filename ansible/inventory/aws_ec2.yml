@@ -1,0 +1,33 @@
+---
+plugin: aws_ec2
+regions:
+  - us-east-1
+
+# Only discover instances matching our project environment and active tags
+filters:
+  tag:Environment: production
+  instance-state-name:
+    - running
+
+# Map instances to groups based on the AnsibleGroup tag value
+keyed_groups:
+  - key: tags.AnsibleGroup
+    prefix: ""
+    separator: ""
+
+# Use the EC2 instance's Name tag as the Ansible inventory hostname
+hostnames:
+  - tag:Name
+
+# Extract metadata tags and map them directly to Ansible host variables
+compose:
+  # For kafka brokers, set the broker_id variable from the instance tag
+  broker_id: tags.kafka_broker_id | default('0') | int
+  # Resolve to Route 53 private DNS names for Kafka hosts, otherwise default to IPs
+  ansible_host: >-
+    {% if tags.AnsibleGroup == 'kafka_brokers' %}
+    broker{{ tags.kafka_broker_id }}.kafka.internal
+    {% else %}
+    public_ip_address | default(private_ip_address)
+    {% endif %}
+
