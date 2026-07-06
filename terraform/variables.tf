@@ -67,5 +67,5 @@ variable "kafka_ui_instance_type" {
 variable "ssh_key_name" {
   description = "Name of the AWS EC2 SSH key pair"
   type        = string
-  default     = "devops-key"
+  default     = "kafka-key"
 }
