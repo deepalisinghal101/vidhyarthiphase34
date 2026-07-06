@@ -6,6 +6,8 @@ pipeline {
         SONAR_SCANNER_HOME = tool 'SonarScanner'
         TRIVY_SEVERITY     = 'HIGH,CRITICAL'
         SLACK_CHANNEL      = '#deployments'
+        TF_HOME = tool 'terraform'
+        PATH    = "${env.TF_HOME}:${env.PATH}"
     }
 
     stages {
