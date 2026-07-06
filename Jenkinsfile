@@ -20,6 +20,7 @@ pipeline {
                 withSonarQubeEnv('SonarQubeServer') {
                     sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=aws-devops-kafka-infrastructure \
+                        -Dsonar.organization=deepalisinghal101 \
                         -Dsonar.sources=. \
                         -Dsonar.exclusions=terraform/.terraform/**,ansible/roles/common/**"
                 }
