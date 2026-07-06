@@ -41,25 +41,25 @@ pipeline {
                 sh 'echo "Tests passed!"'
             }
         }
-
-       # stage('4. Security Scan') {
-        #    parallel {
-         #       stage('Trivy File Scan') {
-          #          steps {
-           #             echo 'Running Trivy container/filesystem scanning...'
-            #            sh 'trivy fs --severity ${TRIVY_SEVERITY} --exit-code 0 .'
-             #       }
-              #  }
-               # stage('OWASP Dependency Check') {
-                #    steps {
-                 #       echo 'Running OWASP Dependency Check...'
-                  #      dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Dependency-Check'
-                   #     dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-                   # }
-                #}
-            #}
-        #}
-
+        /*
+        stage('4. Security Scan') {
+            parallel {
+                stage('Trivy File Scan') {
+                    steps {
+                        echo 'Running Trivy container/filesystem scanning...'
+                        sh 'trivy fs --severity ${TRIVY_SEVERITY} --exit-code 0 .'
+                    }
+                }
+                stage('OWASP Dependency Check') {
+                    steps {
+                        echo 'Running OWASP Dependency Check...'
+                        dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Dependency-Check'
+                        dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                    }
+                }
+            }
+        }
+        */
         stage('5. Build') {
             steps {
                 echo 'Building deployment artifacts...'
