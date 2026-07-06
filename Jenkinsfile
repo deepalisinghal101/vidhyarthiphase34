@@ -3,6 +3,9 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_ACCESS_KEY_ID     = credentials('aws-creds-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-creds-id')
+ 
         SONAR_SCANNER_HOME = tool 'SonarScanner'
         TRIVY_SEVERITY     = 'HIGH,CRITICAL'
         SLACK_CHANNEL      = '#deployments'
