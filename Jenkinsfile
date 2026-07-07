@@ -96,13 +96,13 @@ pipeline {
                 }
             }
         }
-
+        /*
         stage('9. Manual Approval') {
             steps {
                 input message: 'Do you want to deploy this infrastructure configuration to AWS?', ok: 'Deploy'
             }
         }
-
+        */
         stage('10. Terraform Apply') {
             steps {
                 dir('terraform') {
