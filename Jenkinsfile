@@ -27,9 +27,7 @@ pipeline {
 
                 echo "Cloning GitHub Repository..."
 
-                git branch: 'dev',
-                    url: 'https://github.com/deepalisinghal101/vidhyarthiphase34.git'
-                    credentialsId: 'git'
+                git branch: 'dev',url: 'https://github.com/deepalisinghal101/vidhyarthiphase34.git',credentialsId: 'git'
             }
         }
 
