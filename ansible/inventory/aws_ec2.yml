@@ -1,0 +1,18 @@
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - ap-south-1
+
+filters:
+  "tag:Project": "Kafka-Automation"
+  instance-state-name: running
+
+hostnames:
+  - instance-id
+
+compose:
+  ansible_host: public_ip_address
+
+keyed_groups:
+  - prefix: tag
+    key: tags.Project

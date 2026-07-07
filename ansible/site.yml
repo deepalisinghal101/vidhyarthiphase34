@@ -1,0 +1,7 @@
+---
+- name: Configure Kafka Server
+  hosts: tag_Kafka_Automation
+  become: true
+
+  roles:
+    - kafka_role

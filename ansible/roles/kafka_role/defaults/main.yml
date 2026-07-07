@@ -1,0 +1,29 @@
+---
+# Kafka Version
+
+kafka_version: "4.2.0"
+scala_version: "2.13"
+
+# Installation
+
+kafka_home: "/opt/kafka"
+
+kafka_user: "ubuntu"
+
+# Networking
+
+kafka_host: "{{ ansible_default_ipv4.address }}"
+
+kafka_port: 9092
+
+controller_port: 9093
+
+# KRaft
+
+node_id: 1
+
+cluster_id_file: "/opt/kafka/cluster.id"
+
+log_dirs: "/var/lib/kafka"
+
+controller_quorum: "1@{{ ansible_default_ipv4.address }}:9093"

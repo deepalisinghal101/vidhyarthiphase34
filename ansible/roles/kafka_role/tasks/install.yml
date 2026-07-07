@@ -1,0 +1,23 @@
+---
+- name: Download Kafka
+  get_url:
+    url: "https://downloads.apache.org/kafka/4.2.0/kafka_2.13-4.2.0.tgz"
+    dest: /tmp/kafka.tgz
+
+- name: Extract Kafka
+  unarchive:
+    src: /tmp/kafka.tgz
+    dest: /opt/
+    remote_src: yes
+
+- name: Rename Kafka Directory
+  command: mv /opt/kafka_2.13-4.2.0 /opt/kafka
+  args:
+    creates: /opt/kafka
+
+- name: Set Kafka Permissions
+  file:
+    path: /opt/kafka
+    owner: ubuntu
+    group: ubuntu
+    recurse: yes

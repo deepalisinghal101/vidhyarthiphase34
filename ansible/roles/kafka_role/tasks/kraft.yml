@@ -1,0 +1,49 @@
+---
+- name: Generate Kafka Cluster ID
+  command: "{{ kafka_home }}/bin/kafka-storage.sh random-uuid"
+  register: cluster_uuid
+  changed_when: false
+  args:
+    creates: "{{ cluster_id_file }}"
+
+- name: Save Cluster ID
+  copy:
+    dest: "{{ cluster_id_file }}"
+    content: "{{ cluster_uuid.stdout }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_user }}"
+    mode: "0644"
+  when: cluster_uuid.stdout is defined
+
+- name: Read Cluster ID
+  slurp:
+    src: "{{ cluster_id_file }}"
+  register: stored_cluster
+
+- name: Deploy Kafka Configuration
+  template:
+    src: server.properties.j2
+    dest: "{{ kafka_home }}/config/server.properties"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_user }}"
+    mode: "0644"
+
+- name: Check if Kafka Storage is already formatted
+  stat:
+    path: "{{ log_dirs }}/meta.properties"
+  register: kafka_storage
+
+- name: Create Kafka Data Directory
+  file:
+    path: "{{ log_dirs }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_user }}"
+    mode: "0755"
+
+- name: Format Kafka Storage
+  command: >
+    {{ kafka_home }}/bin/kafka-storage.sh format
+    -t {{ stored_cluster.content | b64decode }}
+    -c {{ kafka_home }}/config/server.properties
+  when: not kafka_storage.stat.exists

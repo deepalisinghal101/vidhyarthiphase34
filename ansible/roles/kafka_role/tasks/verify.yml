@@ -1,0 +1,23 @@
+---
+- name: Verify Kafka Service
+  command: systemctl is-active kafka
+  register: kafka_status
+  changed_when: false
+
+- name: Show Kafka Status
+  debug:
+    var: kafka_status.stdout
+
+- name: Wait for Kafka Port
+  wait_for:
+    port: 9092
+    timeout: 60
+
+- name: Check Kafka Port
+  shell: ss -lntp | grep 9092
+  register: kafka_port
+  changed_when: false
+
+- name: Show Kafka Port
+  debug:
+    var: kafka_port.stdout_lines

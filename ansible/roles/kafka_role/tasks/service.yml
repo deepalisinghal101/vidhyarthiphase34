@@ -1,0 +1,28 @@
+---
+- name: Copy Kafka systemd Service
+  template:
+    src: kafka.service.j2
+    dest: /etc/systemd/system/kafka.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload systemd
+
+- name: Flush Handlers
+  meta: flush_handlers
+
+- name: Enable Kafka Service
+  systemd:
+    name: kafka
+    enabled: yes
+
+- name: Start Kafka Service
+  systemd:
+    name: kafka
+    state: started
+  register: kafka_service
+
+- name: Show Kafka Service Status
+  debug:
+    var: kafka_service.status.ActiveState

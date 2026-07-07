@@ -1,0 +1,23 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install OpenJDK 17
+  apt:
+    name: openjdk-17-jdk
+    state: present
+
+- name: Install wget
+  apt:
+    name: wget
+    state: present
+
+- name: Verify Java
+  command: java -version
+  register: java_output
+  changed_when: false
+
+- name: Display Java Version
+  debug:
+    var: java_output.stderr_lines
