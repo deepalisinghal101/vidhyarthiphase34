@@ -1,6 +1,13 @@
 pipeline {
 
     agent any
+    environment {
+        TF_HOME = tool 'terraform'
+        ANSIBLE_HOME = tool 'Ansible'
+        PATH = "${env.TF_HOME}:${env.ANSIBLE_HOME}:${env.PATH}"
+        TF_DIR = 'Terraform-codes'
+        ANSIBLE_DIR = 'ansible'
+    }
 
     parameters {
 
@@ -12,12 +19,7 @@ pipeline {
 
     }
 
-    environment {
-
-        TF_DIR = 'Terraform-codes'
-        ANSIBLE_DIR = 'ansible'
-
-    }
+   
 
     stages {
 
