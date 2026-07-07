@@ -27,8 +27,8 @@ pipeline {
 
                 echo "Cloning GitHub Repository..."
 
-                git branch: 'main',
-                    url: 'git@github.com:Rishikvashu/kafka-automation.git'
+                git branch: 'dev',
+                    url: 'git@github.com:deepalisinghal101/vidhyarthiphase34.git'
             }
         }
 
