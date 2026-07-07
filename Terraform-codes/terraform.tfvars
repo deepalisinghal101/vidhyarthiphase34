@@ -12,8 +12,8 @@ sg_name = "kafka_sg"
 
 ami = "ami-006f82a1d5a27da54"
 
-key_name = "ansible-new"
+key_name = "kafka-key"
 
-instance_type = "c7i-flex.large"
+instance_type = "t3.micro"
 
 instance_name = "kafka_tool_evaluation_ec2"
