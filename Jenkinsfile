@@ -3,7 +3,7 @@ pipeline {
     agent any
     environment {
         
-        TF_HOME = tool Terraform'
+        TF_HOME = tool 'Terraform'
         ANSIBLE_HOME = tool 'Ansible'
         PATH = "${env.TF_HOME}:${env.ANSIBLE_HOME}:${env.PATH}"
         
