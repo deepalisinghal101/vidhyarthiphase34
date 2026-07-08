@@ -7,6 +7,9 @@ pipeline {
         PATH = "${env.TF_HOME}:${env.ANSIBLE_HOME}:${env.PATH}"
         TF_DIR = 'Terraform-codes'
         ANSIBLE_DIR = 'ansible'
+        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_ACCESS_KEY_ID     = credentials('aws-creds-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-creds-id')
     }
 
     parameters {
