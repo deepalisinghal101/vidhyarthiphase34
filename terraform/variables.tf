@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region to deploy resources into"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-south-1"
 }
 
 variable "project_name" {
@@ -37,7 +37,7 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   description = "Availability zones to spread subnets across"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  default     = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 }
 
 variable "bastion_instance_type" {
@@ -49,13 +49,13 @@ variable "bastion_instance_type" {
 variable "jenkins_instance_type" {
   description = "EC2 Instance type for Jenkins"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.micro"
 }
 
 variable "kafka_instance_type" {
   description = "EC2 Instance type for Kafka brokers"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.micro"
 }
 
 variable "kafka_ui_instance_type" {
