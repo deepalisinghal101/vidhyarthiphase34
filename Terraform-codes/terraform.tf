@@ -1,3 +1,4 @@
+/*
 terraform {
   backend "s3" {
 
@@ -10,7 +11,7 @@ terraform {
     encrypt = true
   }
 }
-
+*/
 module "vpc" {
 
   source = "./modules/vpc"
