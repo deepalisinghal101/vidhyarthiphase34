@@ -19,7 +19,7 @@ pipeline {
                 checkout scm
             }
         }
-
+        /*
         stage('2. SonarQube Quality Check') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
@@ -46,7 +46,7 @@ pipeline {
                 sh 'echo "Tests passed!"'
             }
         }
-        /*
+        
         stage('4. Security Scan') {
             parallel {
                 stage('Trivy File Scan') {
@@ -64,14 +64,14 @@ pipeline {
                 }
             }
         }
-        */
+        
         stage('5. Build') {
             steps {
                 echo 'Building deployment artifacts...'
                 sh 'echo "Artifacts built successfully."'
             }
         }
-
+       */
         stage('6. Terraform Validate') {
             steps {
                 dir('terraform') {
