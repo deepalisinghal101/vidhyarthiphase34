@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "state" {
   force_destroy = false
 
   tags = {
-    Name        = "${var.project_name}-state-bucket"
+    Name        = "deepali-state-bucket"
     Environment = var.environment
   }
 }
