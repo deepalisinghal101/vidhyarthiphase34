@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "project_name" {
   description = "Project name tag for resource naming"
   type        = string
-  default     = "devops-kafka"
+  default     = "deepali"
 }
 
 variable "environment" {
