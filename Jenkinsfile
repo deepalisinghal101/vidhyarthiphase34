@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_DEFAULT_REGION = 'ap-south-1'
         AWS_ACCESS_KEY_ID     = credentials('aws-creds-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-creds-id')
  
@@ -75,7 +75,7 @@ pipeline {
         stage('6. Terraform Validate') {
             steps {
                 dir('terraform') {
-                    sh 'terraform init'
+                    sh 'terraform init -reconfigure'
                     sh 'terraform validate'
                 }
             }
