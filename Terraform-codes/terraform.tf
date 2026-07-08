@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
 
-    bucket = "terraform-state-vashishtha"
+    bucket = "terraform-state-deepali"
     key    = "A5-Terraform/terraform.tfstate"
     region = "ap-south-1"
 
